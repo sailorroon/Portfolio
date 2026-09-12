@@ -1,0 +1,2118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rooney Cheung - Engineering Portfolio</title>
+    <link rel="icon" href="images/Icon.png" type="image/x-icon">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* General Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            color: #333;
+            background-color: #f8f9fa;
+            overflow-y: scroll;
+        }
+
+        /* Fixed Navigation Bar Styling */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #1a252f;
+            color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #3498db;
+            cursor: pointer;
+        }
+
+        /* Navigation Tabs Container */
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* Navigation Tab Links */
+        nav a {
+            font-family: 'Montserrat', sans-serif;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        nav a:hover, nav a.active-link {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        /* Layout for Sections */
+        main {
+            margin-top: 80px; 
+            min-height: calc(100vh - 80px - 120px); 
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Page Transitions */
+        .section {
+            display: none;
+            opacity: 0;
+            padding: 60px 10%;
+            transition: opacity 0.4s ease-in-out;
+            flex: 1;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section.fade-in {
+            opacity: 1;
+        }
+
+        /* --- ABOUT ME (MAIN PAGE) SPECIFIC STYLING --- */
+        #about {
+            background: linear-gradient(rgba(10, 15, 30, 0.8), rgba(10, 15, 30, 0.8)), url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=2048&auto=format&fit=crop') no-repeat center center/cover;
+            color: #fff;
+            display: none; 
+            align-items: center;
+            justify-content: center;
+            padding: 100px 10%;
+        }
+
+        #about.active {
+            display: flex;
+        }
+
+        .about-layout {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .about-image-container {
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .about-image-container img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 3px solid rgba(255,255,255,0.1);
+        }
+
+        .about-text-container {
+            flex: 1.5;
+            text-align: left;
+        }
+
+        .about-text-container h1 {
+            color: #ffffff;
+            margin-bottom: 25px;
+            font-size: 3.5rem;
+        }
+
+        .about-text-container p {
+            color: #e0e6ed;
+            margin-bottom: 20px;
+            margin-left: 0;
+            margin-right: 0;
+            max-width: 100%;
+            font-size: 1.2rem;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+        }
+
+        h1 { font-size: 4rem; color: #111; margin-bottom: 40px; line-height: 1.2; }
+        
+        h2 { 
+            font-size: 2.5rem; color: #2c3e50; margin-bottom: 30px; text-transform: uppercase; 
+            border-bottom: 3px solid #3498db; display: inline-block; padding-bottom: 10px; 
+            width: 100%; text-align: left; 
+        }
+        
+        p { font-size: 1.3rem; line-height: 1.8; margin-bottom: 20px; color: #444; font-weight: 300; max-width: 900px; }
+
+        /* --- EXPERIENCE PAGE STYLING --- */
+        .experience-list {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            margin-top: 20px;
+        }
+
+        .exp-item {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 40px; 
+            border-left: 5px solid #3498db;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            padding: 0 20px; 
+        }
+        .exp-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 5px;
+        }
+
+        .exp-header h3 {
+            font-size: 2rem; 
+            color: #1a252f;
+            margin: 0;
+        }
+
+        .exp-header span.exp-date {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #7f8c8d;
+        }
+
+        .exp-body {
+            display: flex;
+            gap: 40px; 
+            padding: 0 20px; 
+            align-items: flex-start;
+        }
+
+        .exp-body img {
+            width: 450px; 
+            height: 300px; 
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+
+        .exp-text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .exp-text p, .exp-text ul {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .exp-text ul {
+            padding-left: 20px; /* Gives room for the bullet points */
+        }
+
+        .exp-text li {
+            margin-bottom: 10px; /* Adds breathing room between bullet points */
+        }
+
+        .exp-location {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: #95a5a6;
+            font-style: italic;
+        }
+
+        /* --- RELEVANT COURSES AND NOTES STYLING --- */
+        .course-section {
+            margin-bottom: 60px;
+        }
+
+        .course-section h3 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+        }
+
+        .gpa-display {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            max-width: 100%;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+        }
+
+        .course-square {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            aspect-ratio: 1 / 1; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eaeaea;
+        }
+
+        .course-square:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+            border-color: #3498db;
+        }
+
+        .course-square h4 { font-size: 1.1rem; color: #2c3e50; margin-bottom: 5px; font-weight: 700;}
+        .course-square p { font-size: 0.85rem; color: #7f8c8d; margin-bottom: 0; font-weight: 500;}
+
+        /* --- PROJECT SQUARES STYLING --- */
+        .projects-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 30px; 
+            margin-top: 40px; 
+        }
+
+        .project-square {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            aspect-ratio: 1 / 1; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eaeaea;
+        }
+
+        .project-square:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+            border-color: #3498db;
+        }
+
+        .project-square h3 { 
+            font-size: 1.5rem; 
+            color: #2c3e50; 
+            margin-bottom: 10px; 
+            font-weight: 800;
+        }
+        .project-square p { 
+            font-size: 1rem; 
+            color: #7f8c8d; 
+            margin: 0; 
+            font-weight: 400;
+        }
+
+        .project-template {
+            background: #f1f3f5;
+            border: 2px dashed #95a5a6;
+            box-shadow: none;
+        }
+
+        .project-template:hover {
+            box-shadow: none;
+            border-color: #7f8c8d;
+        }
+
+        .project-template h3 {
+            color: #7f8c8d;
+        }
+
+        .project-template p {
+            color: #95a5a6;
+        }
+
+        /* --- PROJECT REPORT DOWNLOAD BUTTONS --- */
+        .project-downloads {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .project-download-btn {
+            display: block;
+            width: 100%;
+            background-color: #1a252f;
+            color: #ffffff;
+            text-align: center;
+            padding: 12px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .project-download-btn:hover {
+            background-color: #3498db;
+            transform: translateY(-2px);
+        }
+
+        /* --- COURSE & PROJECT DETAIL VIEW STYLING --- */
+        .course-detail-layout, .project-detail-layout {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            margin-top: 20px;
+        }
+
+        .download-btn {
+            display: block;
+            text-align: center;
+            background-color: #3498db;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .download-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .star-rating-container {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .stars {
+            --percent: calc(var(--rating) / 5 * 100%);
+            display: inline-block;
+            font-size: 2.5rem;
+            font-family: Arial, Helvetica, sans-serif; 
+            line-height: 1;
+        }
+        
+        .stars::before {
+            content: '★★★★★';
+            letter-spacing: 4px;
+            background: linear-gradient(90deg, #f1c40f var(--percent), #bdc3c7 var(--percent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .rating-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 1rem;
+            color: #7f8c8d;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .gallery-container { flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 5px; } 
+        .main-image-wrapper { 
+            width: 100%; 
+            height: 400px; /* Retains the original container size */
+            overflow-y: auto; /* Enables vertical scrolling */
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+            margin-bottom: 5px; 
+        }
+
+        .main-image { 
+            width: 100%; 
+            height: auto; /* Allows the image to expand to its full natural height */
+            transition: opacity 0.3s ease; 
+            display: block; 
+        }
+        .thumbnail-row { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; margin-top: 5px; }
+        .thumbnail-row img { width: 100px; height: 80px; object-fit: cover; border-radius: 8px; cursor: pointer; opacity: 0.6; transition: opacity 0.3s, transform 0.3s; border: 2px solid transparent; }
+        .thumbnail-row img:hover, .thumbnail-row img.active-thumb { opacity: 1; transform: scale(1.05); border-color: #3498db; }
+        
+        .description-container { flex: 1; min-width: 300px; }
+        .description-container ul { 
+            margin-left: 20px; 
+            margin-bottom: 20px; 
+            font-size: 1.15rem; /* Slightly smaller than the 1.3rem used for main paragraphs */
+            color: #444; /* Matches the main text color */
+            line-height: 1.8; 
+            font-weight: 300; /* Matches the main text font-weight */
+        }
+        
+        .back-btn { display: inline-block; padding: 10px 20px; background-color: #1a252f; color: #fff; text-decoration: none; border-radius: 4px; cursor: pointer; border: none; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.9rem; transition: background-color 0.3s; }
+        .back-btn:hover { background-color: #3498db; }
+
+        /* Footer styling */
+        footer { 
+            position: relative; 
+            overflow: hidden; 
+            text-align: center; 
+            padding: 40px 20px; 
+            background-color: #1a252f; 
+            color: #7f8c8d; 
+            margin-top: auto; 
+            font-family: 'Montserrat', sans-serif; 
+        }
+        
+        .footer-socials { 
+            display: flex; 
+            justify-content: center; 
+            gap: 25px; 
+            margin-top: 15px; /* Reverted back to margin-top */
+        }
+        
+        .footer-socials a { 
+            color: #bdc3c7; 
+            text-decoration: none; 
+            font-weight: 700; 
+            font-size: 0.95rem; 
+            transition: color 0.3s ease; 
+        }
+        
+        .footer-socials a:hover { 
+            color: #3498db; 
+        }
+
+        /* Kirby Animation Styling */
+        .kirby-gif {
+            position: absolute;
+            bottom: 0; /* Pins Kirby exactly to the bottom of the footer */
+            height: 25%; /* Keeps him at 1/4 of the footer's height */
+            opacity: 0; 
+            pointer-events: none; 
+            transition: opacity 0.4s ease-in-out; 
+        }
+
+        /* Trigger animation when the user hovers anywhere on the footer */
+        footer:hover .kirby-gif {
+            opacity: 1; 
+            animation: kirbyWalk 12s linear infinite;
+        }
+
+        /* Keyframes to control Kirby's movement and flipping */
+        @keyframes kirbyWalk {
+            0%   { left: 15%; transform: scaleX(-1); } 
+            15%  { left: 2%; transform: scaleX(-1); }  
+            16%  { left: 2%; transform: scaleX(1); }   
+            66%  { left: calc(98% - 40px); transform: scaleX(1); } 
+            67%  { left: calc(98% - 40px); transform: scaleX(-1); } 
+            100% { left: 15%; transform: scaleX(-1); } 
+        }
+        
+        /* Skills and Resume Styling */
+        .resume-container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .resume-container h3 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        .resume-container a.download-resume {
+            display: inline-block;
+            background-color: #3498db;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 10px 0 20px 0;
+            transition: background-color 0.3s;
+        }
+        .resume-container a.download-resume:hover { background-color: #2980b9; }
+        
+        .resume-caption {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 0 30px 0; 
+            line-height: 1.6;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header>
+        <div class="logo" onclick="navigateTo('about')">&lt; Rooney Cheung /&gt;</div>
+        
+        <nav id="main-nav">
+            <a onclick="navigateTo('experience')" id="nav-experience">Experience</a>
+            <a onclick="navigateTo('courses')" id="nav-courses">Relevant Courses and Notes</a>
+            <a onclick="navigateTo('projects')" id="nav-projects">Past Projects</a>
+            <a onclick="navigateTo('skills')" id="nav-skills">Skills & Resume</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- SECTION 1: About Me (Main Page) -->
+        <section id="about" class="section active fade-in">
+            <div class="about-layout">
+                <!-- Left: Portrait Picture -->
+                <div class="about-image-container">
+                    <img src="images/mypic.jpg" alt="Rooney Cheung Portrait">
+                </div>
+                
+                <!-- Right: Description -->
+                <div class="about-text-container">
+                    <h1>I'm Rooney Cheung,<br>an Aerospace Engineering Student.</h1>
+                    
+                    <p>I am currently studying in the University of Toronto in Third Year, pursuing a degree in Engineering Science, majoring in Aerospace Engineering.</p>
+                    
+                    <p>To me, engineering is more than just solving problems; it's about building something that matters and creating solutions that have a lasting impact on society. I grew up in Hong Kong and moved to Canada in 2023, being exposed to a diverse range of cultural and academic environments,
+                         this shaped my interest in the broad field of engineering. In particular, I was always fascinated by space exploration and flying objects in general, hence I pursued a degree in Aerospace Engineering. That said, I am always eager to learn and grow as an engineer, regardless of the field and challenges ahead.</p>
+                    
+                    <p>Off work and studies, you can find me doing all kinds of activities. In particular, I am an active person, I enjoy working out, running, basketball, hiking... and so on. I also enjoy travelling and exploring new places. In addition, I really enjoy good restaurants and trying new cuisines.
+                        Finally, I am a big fan of video games, the current one I am playing is "The Legend of Zelda: Echoes of Wisdom", which requires a lot of problem solving and critical thinking, which I find very enjoyable and rewarding.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: Experience -->
+        <section id="experience" class="section">
+            <h2>Experience</h2>
+            
+            <div class="experience-list">
+                
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <h3 class="exp-title">Summer Research Student</h3>
+                        <div class="exp-meta">
+                            <span class="exp-date">May 2026 - Aug 2026</span>
+                            <span class="exp-location">Advanced Modelling and Hybrid Simulation Research Group</span>
+                        </div>
+                    </div>
+                    <div class="exp-body">
+                        <img src="images/experience1.jpg" alt="summer research">
+                        <div class="exp-text">
+                            <ul>
+                                <li>Received Funding from the NSERC USRA (Undergraduate Student Research Award)</li>
+                                <li>Developed a web-hosted relay architecture for communication between a publicly hosted server on the AWS and internal numerical modelling modules using TCP/IP protocols in python.</li>
+                                <li>Assisted graduate students on preparing and conducting civil engineering experiments.</li>
+                                <li>Organized and reported progress and development in weekly slideshow presentations.</li>
+                                <li>Presented the architecture on the UnERD (Undergraduate Engineering Research Day), awarded best poster presentation in the AI and Data Science category.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <h3 class="exp-title">Data Analysis and Engineering Intern</h3>
+                        <div class="exp-meta">
+                            <span class="exp-date">Jul 2025 - Aug 2025</span>
+                            <span class="exp-location">MTR Corporation Limited</span>
+                        </div>
+                    </div>
+                    <div class="exp-body">
+                        <img src="images/experience2.jpg" alt="mtr">
+                        <div class="exp-text">
+                            <ul>
+                                <li>Inspected track irregularities and conducted on-site investigations during night shifts.</li>
+                                <li>Developed software-based algorithms using Python and Excel VBA alongside simple mathematical models to detect track irregularities from measurement data.</li>
+                                <li>Generated Graphs and Visuals to pinpoint critical areas and presented the information to my supervisor using infographics.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <h3 class="exp-title">Private and Volunteer Tutor</h3>
+                        <div class="exp-meta">
+                            <span class="exp-date">2022 - Present</span>
+                            <span class="exp-location">Toronto, Ontario, Canada</span>
+                        </div>
+                    </div>
+                    <div class="exp-body">
+                        <img src="images/experience3.jpg" alt="tutor">
+                        <div class="exp-text">
+                            <ul>
+                                <li>Tutor for physics, biology, chemistry, advanced functions and calculus for the Ontario curriculum.</li>
+                                <li>Tutor for Calculus I,II and III, Linear algebra, ODE, Electromagnetism, Structural Analysis, Fluid Mechanics, Probability and Statistics courses in University.</li>
+                                <li>Summarized course information and created practice exercises for students to engage in tutorial sessions.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 3: Relevant Courses and Notes -->
+        <section id="courses" class="section">
+            <h2>Relevant Courses and Notes</h2>
+            <p class="gpa-display">GPA: 3.98 / 4.00</p>
+            <p style="max-width: 100%;">Click into any course module to view detailed notes, assignments, and download associated files.</p>
+
+            <div class="course-section">
+                <h3>[Year 2, Semester 2]</h3>
+                <div class="courses-grid">
+                    <div class="course-square" onclick="navigateTo('course-detail-1')">
+                        <h4>BME205</h4><p>Fundamentals of Biomedical Engineering</p>
+                    </div>
+                    <div class="course-square" onclick="navigateTo('course-detail-2')">
+                        <h4>CLA204</h4><p>Introduction to Classical Mythology</p>
+                    </div>
+                    <div class="course-square" onclick="navigateTo('course-detail-3')">
+                        <h4>ECE259</h4><p>Electromagnetism</p>
+                    </div>
+                    <div class="course-square" onclick="navigateTo('course-detail-4')">
+                        <h4>ESC204</h4><p>Praxis III</p>
+                    </div>
+                    <div class="course-square" onclick="navigateTo('course-detail-5')">
+                        <h4>MIE286</h4><p>Probability and Statistics</p>
+                    </div>
+                    <div class="course-square" onclick="navigateTo('course-detail-6')">
+                        <h4>PHY294</h4><p>Quantum and Thermal Physics</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-section">
+                <h3>[Year 2, Semester 1]</h3>
+                <div class="courses-grid">
+                    <div class="course-square" onclick="navigateTo('course-detail-7')">
+                        <h4>AER210</h4><p>Vector Calculus and Fluid Dynamics</p>
+                    </div>
+                    <div class="course-square" onclick="navigateTo('course-detail-8')">
+                        <h4>CHE260</h4><p>Thermodynamics</p>
+                    </div>
+                    <div class="course-square" onclick="navigateTo('course-detail-9')">
+                        <h4>ECE253</h4><p>Digital and Computer Systems</p>
+                    </div>
+                    <div class="course-square" onclick="navigateTo('course-detail-10')">
+                        <h4>ESC203</h4><p>Engineering and Society (Ethics)</p>
+                    </div>
+                    <div class="course-square" onclick="navigateTo('course-detail-11')">
+                        <h4>MAT292</h4><p>Ordinary Differential Equations</p>
+                    </div>
+                    <div class="course-square" onclick="navigateTo('course-detail-12')">
+                        <h4>PHY293</h4><p>Waves and Modern Physics</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-section">
+                <h3>[Year 1, Semester 2]</h3>
+                <div class="courses-grid">
+                    <div class="course-square" onclick="navigateTo('course-detail-13')">
+                        <h4>ECE159</h4><p>Fundamentals of Electric Circuits</p>
+                    </div>
+                    <div class="course-square" onclick="navigateTo('course-detail-14')">
+                        <h4>ESC102</h4><p>Praxis II</p>
+                    </div>
+                    <div class="course-square" onclick="navigateTo('course-detail-15')">
+                        <h4>ESC190</h4><p>Computer Algorithms and Data Structures</p>
+                    </div>
+                    <div class="course-square" onclick="navigateTo('course-detail-16')">
+                        <h4>ESC195</h4><p>Calculus II</p>
+                    </div>
+                    <div class="course-square" onclick="navigateTo('course-detail-17')">
+                        <h4>MAT185</h4><p>Linear Algebra</p>
+                    </div>
+                    <div class="course-square" onclick="navigateTo('course-detail-18')">
+                        <h4>MSE160</h4><p>Molecules and Materials</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-section">
+                <h3>[Year 1, Semester 1]</h3>
+                <div class="courses-grid">
+                    <div class="course-square" onclick="navigateTo('course-detail-19')">
+                        <h4>CIV102</h4><p>Structures and Materials</p>
+                    </div>
+                    <div class="course-square" onclick="navigateTo('course-detail-20')">
+                        <h4>ESC101</h4><p>Praxis I</p>
+                    </div>
+                    <div class="course-square" onclick="navigateTo('course-detail-21')">
+                        <h4>ESC103</h4><p>Engineering Mathematics and Computation</p>
+                    </div>
+                    <div class="course-square" onclick="navigateTo('course-detail-22')">
+                        <h4>ESC180</h4><p>Introduction to Computer Programming</p>
+                    </div>
+                    <div class="course-square" onclick="navigateTo('course-detail-23')">
+                        <h4>ESC194</h4><p>Calculus I</p>
+                    </div>
+                    <div class="course-square" onclick="navigateTo('course-detail-24')">
+                        <h4>PHY180</h4><p>Classical Mechanics</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- COURSE DETAIL VIEW 1 -->
+        <section id="course-detail-1" class="section">
+            <h2 style="text-align: left;">BME205 - Fundamentals of Biomedical Engineering</h2>
+            <div class="course-detail-layout">
+                <div class="gallery-container">
+                    <img id="course-img-1" class="main-image" src="images/bme205_notes.png" alt="Course Image">
+                    <p id="caption-course-img-1" class="image-caption">My Notes</p>
+                    <div class="thumbnail-row">
+                        <img src="images/bme205_notes.png" data-caption="My Notes" data-download="files/bme205_notes.pdf" class="active-thumb" onclick="changeCourseGalleryImage('course-img-1', 'caption-course-img-1', 'download-btn-1', this)">
+                    </div>
+                    <a id="download-btn-1" href="files/bme205_notes.pdf" download class="download-btn">⬇ Download Current File</a>
+                </div>
+                <div class="description-container">
+                    <div class="star-rating-container">
+                        <div class="stars" style="--rating: 2.0;" aria-label="Rating of this course is 2.0 out of 5"></div>
+                        <span class="rating-text">2.0 / 5.0</span>
+                    </div>
+                    <h3>Summary</h3>
+                    <p>This course provided a comprehensive introduction to the fundamental principles of biomedical engineering, including biomedical knowledge on skeletons, muscles, the heart and circulatory system. It also had engaging labs that allowed hands-on
+                         experience with different biosensors. However, the course lacked orgnaization or clear goals, especially on the delivery of materials and how they were presented.</p>
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Application of Sensors in Biomedical Contexts</li>
+                        <li>Different biological systems and how are they modelled</li>
+                        <li>Calculations related to biology</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Back Button Moved to Bottom Right -->
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('courses')">Back to Courses &rarr;</button>
+            </div>
+        </section>
+
+        <!-- COURSE DETAIL VIEW 2 (No Notes/Images) -->
+        <section id="course-detail-2" class="section">
+            <h2 style="text-align: left;">CLA204 - Introduction to Classical Mythology</h2>
+            <div class="course-detail-layout">
+                <div class="description-container" style="flex: 100%; min-width: 100%;">
+                    <div class="star-rating-container">
+                        <div class="stars" style="--rating: 4.5;" aria-label="Rating of this course is 4.5 out of 5"></div>
+                        <span class="rating-text">4.5 / 5.0</span>
+                    </div>
+                    <h3>Summary</h3>
+                    <p>A refreshing break from heavy technical coursework, offering deep insights into Greek and Roman mythology and their lasting influence on modern storytelling, art, and culture.</p>
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Exploration of different deities from Greek and Roman origins.</li>
+                        <li>Analysis of classical texts and their values, including traditions at the time, power dynamics etc.</li>
+                        <li>Comparing and understanding the modern approach of mythology and how stories are told today.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('courses')">Back to Courses &rarr;</button>
+            </div>
+        </section>
+
+        <!-- COURSE DETAIL VIEW 3 -->
+        <section id="course-detail-3" class="section">
+            <h2 style="text-align: left;">ECE259 - Electromagnetism</h2>
+            <div class="course-detail-layout">
+                <div class="gallery-container">
+                    <img id="course-img-3" class="main-image" src="images/ece259_notes.png" alt="Course Image">
+                    <p id="caption-course-img-3" class="image-caption">My Notes</p>
+                    <div class="thumbnail-row">
+                        <img src="images/ece259_notes.png" data-caption="My Notes" data-download="files/ece259_notes.pdf" class="active-thumb" onclick="changeCourseGalleryImage('course-img-3', 'caption-course-img-3', 'download-btn-3', this)">
+                    </div>
+                    <a id="download-btn-3" href="files/ece259_notes.pdf" download class="download-btn">⬇ Download Current File</a>
+                </div>
+                <div class="description-container">
+                    <div class="star-rating-container">
+                        <div class="stars" style="--rating: 5.0;" aria-label="Rating of this course is 5.0 out of 5"></div>
+                        <span class="rating-text">5.0 / 5.0</span>
+                    </div>
+                    <h3>Summary</h3>
+                    <p>A mathematically rigorous course diving deep into Maxwell's equations. THis includes usage of Vector calculus to find fields, charge distribution and magnetic phenomenons. Overall, a very challenging but rewarding course.</p>
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Mastery of electrostatic and magnetostatic fields.</li>
+                        <li>Application of Maxwell's equations.</li>
+                        <li>Understanding how changes in Electromagnetic Fields affect one another.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('courses')">Back to Courses &rarr;</button>
+            </div>
+        </section>
+
+        <!-- COURSE DETAIL VIEW 4 (No Notes/Images) -->
+        <section id="course-detail-4" class="section">
+            <h2 style="text-align: left;">ESC204 - Praxis III</h2>
+            <div class="course-detail-layout">
+                <div class="description-container" style="flex: 100%; min-width: 100%;">
+                    <div class="star-rating-container">
+                        <div class="stars" style="--rating: 4.5;" aria-label="Rating of this course is 4.5 out of 5"></div>
+                        <span class="rating-text">3.5 / 5.0</span>
+                    </div>
+                    <h3>Summary</h3>
+                    <p>A design course that challenged us to apply our engineering knowledge to a real-world problem. In my year, we designed a system that detects holdover (zombie) fires in Canada.</p>
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>End-to-end engineering design process and framing.</li>
+                        <li>Physical prototyping and rigorous testing protocols.</li>
+                        <li>Stakeholder communication and team project management.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('courses')">Back to Courses &rarr;</button>
+            </div>
+        </section>
+
+        <!-- COURSE DETAIL VIEW 5 -->
+        <section id="course-detail-5" class="section">
+            <h2 style="text-align: left;">MIE286 - Probability and Statistics</h2>
+            <div class="course-detail-layout">
+                <div class="gallery-container">
+                    <img id="course-img-5" class="main-image" src="images/mie286_notes.png" alt="Course Image">
+                    <p id="caption-course-img-5" class="image-caption">My Notes</p>
+                    <div class="thumbnail-row">
+                        <img src="images/mie286_notes.png" data-caption="My Notes" data-download="files/mie286_notes.pdf" class="active-thumb" onclick="changeCourseGalleryImage('course-img-5', 'caption-course-img-5', 'download-btn-5', this)">
+                        <img src="images/mie286_cs.png" data-caption="Cheat Sheet for Finals" data-download="files/mie286_cs.pdf" onclick="changeCourseGalleryImage('course-img-5', 'caption-course-img-5', 'download-btn-5', this)">
+                    </div>
+                    <a id="download-btn-5" href="files/mie286_notes.pdf" download class="download-btn">⬇ Download Current File</a>
+                </div>
+                <div class="description-container">
+                    <div class="star-rating-container">
+                        <div class="stars" style="--rating: 4.5;" aria-label="Rating of this course is 4.5 out of 5"></div>
+                        <span class="rating-text">4.5 / 5.0</span>
+                    </div>
+                    <h3>Summary</h3>
+                    <p>Especially important for gamblers. This provided a fundamental understanding of probability theory as well as different distributions. It also provided knowledge in applying different distributions to hypothesis testing and confidence intervals.</p>
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Foundations of probability distributions.</li>
+                        <li>Hypothesis testing and confidence intervals.</li>
+                        <li>Data modeling and statistical inference.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('courses')">Back to Courses &rarr;</button>
+            </div>
+        </section>
+
+        <!-- COURSE DETAIL VIEW 6 -->
+        <section id="course-detail-6" class="section">
+            <h2 style="text-align: left;">PHY294 - Quantum and Thermal Physics</h2>
+            <div class="course-detail-layout">
+                <div class="gallery-container">
+                    <img id="course-img-6" class="main-image" src="images/phy294_notes.png" alt="Course Image">
+                    <p id="caption-course-img-6" class="image-caption">My Notes</p>
+                    <div class="thumbnail-row">
+                        <img src="images/phy294_notes.png" data-caption="My Notes" data-download="files/phy294_notes.pdf" class="active-thumb" onclick="changeCourseGalleryImage('course-img-6', 'caption-course-img-6', 'download-btn-6', this)">
+                        <img src="images/Rydberg_Constant_Lab.png" data-caption="Rydberg Constant Lab (Done with Han Fang)" data-download="files/Rydberg_Constant_Lab.pdf" onclick="changeCourseGalleryImage('course-img-6', 'caption-course-img-6', 'download-btn-6', this)">
+                        <img src="images/Thermal_Diffusivity_Lab.png" data-caption="Thermal Diffusivity Lab (Done with Han Fang; The Calculations were wrong)" data-download="files/Thermal_Diffusivity_Lab.pdf" onclick="changeCourseGalleryImage('course-img-6', 'caption-course-img-6', 'download-btn-6', this)">
+                        <img src="images/Photoelectric_Effect_Lab.png" data-caption="Photoelectric Effect Lab (Done with Han Fang)" data-download="files/Photoelectric_Effect_Lab.pdf" onclick="changeCourseGalleryImage('course-img-6', 'caption-course-img-6', 'download-btn-6', this)">
+                    </div>
+                    <a id="download-btn-6" href="files/phy294_notes.pdf" download class="download-btn">⬇ Download Current File</a>
+                </div>
+                <div class="description-container">
+                    <div class="star-rating-container">
+                        <div class="stars" style="--rating: 4.0;" aria-label="Rating of this course is 4.0 out of 5"></div>
+                        <span class="rating-text">4.0 / 5.0</span>
+                    </div>
+                    <h3>Summary</h3>
+                    <p>A two part course covering quantum mechanics and statistical physics. For me, quantum physics was particularly 
+                        interesting and provided me a deeper understanding of the atomic model. The thermophysics part provided me a solid understanding in how macroscopic things can be built up with microscopic models, the Equipartition Theorem was especially fascinating.</p>
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Schrödinger equation and quantum states.</li>
+                        <li>Statistical mechanics and entropy.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('courses')">Back to Courses &rarr;</button>
+            </div>
+        </section>
+
+        <!-- COURSE DETAIL VIEW 7 -->
+        <section id="course-detail-7" class="section">
+            <h2 style="text-align: left;">AER210 - Vector Calculus and Fluid Dynamics</h2>
+            <div class="course-detail-layout">
+                <div class="gallery-container">
+                    <img id="course-img-7" class="main-image" src="images/aer210_fd_notes.png" alt="Course Image">
+                    <p id="caption-course-img-7" class="image-caption">Fluid Dynamics Notes</p>
+                    <div class="thumbnail-row">
+                        <img src="images/aer210_fd_notes.png" data-caption="Fluid Dynamics Notes" data-download="files/aer210_fd_notes.pdf" class="active-thumb" onclick="changeCourseGalleryImage('course-img-7', 'caption-course-img-7', 'download-btn-7', this)">
+                        <img src="images/aer210_vc_notes.png" data-caption="Vector Calculus Notes" data-download="files/aer210_vc_notes.pdf" onclick="changeCourseGalleryImage('course-img-7', 'caption-course-img-7', 'download-btn-7', this)">
+                        <img src="images/Microfluidics_Lab.png" data-caption="Microfluidics Lab" data-download="files/Microfluidics_Lab.pdf" onclick="changeCourseGalleryImage('course-img-7', 'caption-course-img-7', 'download-btn-7', this)">
+                    </div>
+                    <a id="download-btn-7" href="files/aer210_fd_notes.pdf" download class="download-btn">⬇ Download Current File</a>
+                </div>
+                <div class="description-container">
+                    <div class="star-rating-container">
+                        <div class="stars" style="--rating: 5.0;" aria-label="Rating of this course is 5.0 out of 5"></div>
+                        <span class="rating-text">5.0 / 5.0</span>
+                    </div>
+                    <h3>Summary</h3>
+                    <p>Vector calculus provided fundamental tools for a lot of future engineering courses. Fluid Dynamics was very interesting. Labs provided great opportunities to apply concepts.</p>
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Vector Calculus and theories</li>
+                        <li>Conservation Laws, Hydrostatics and different flow types</li>
+                        <li>Flow visualization and Microfluidics Lab</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('courses')">Back to Courses &rarr;</button>
+            </div>
+        </section>
+
+        <!-- COURSE DETAIL VIEW 8 -->
+        <section id="course-detail-8" class="section">
+            <h2 style="text-align: left;">CHE260 - Thermodynamics and Heat Transfer</h2>
+            <div class="course-detail-layout">
+                <div class="gallery-container">
+                    <img id="course-img-8" class="main-image" src="images/che260_ht_notes.png" alt="Course Image">
+                    <p id="caption-course-img-8" class="image-caption">My Notes on Heat Transfer</p>
+                    <div class="thumbnail-row">
+                        <img src="images/che260_ht_notes.png" data-caption="My Notes on Heat Transfer" data-download="files/che260_ht_notes.pdf" class="active-thumb" onclick="changeCourseGalleryImage('course-img-8', 'caption-course-img-8', 'download-btn-8', this)">
+                        <img src="images/Ideal_Gas_Law_Lab.png" data-caption="Ideal Gas Law Lab (Done with Akhilesh Menon and Jadyn Zeng)" data-download="files/Ideal_Gas_Law_Lab.pdf" onclick="changeCourseGalleryImage('course-img-8', 'caption-course-img-8', 'download-btn-8', this)">
+                        <img src="images/First_Law_Lab.png" data-caption="First Law of Thermodynamics Lab (Done with Akhilesh Menon and Jadyn Zeng)" data-download="files/First_Law_Lab.pdf" onclick="changeCourseGalleryImage('course-img-8', 'caption-course-img-8', 'download-btn-8', this)">
+                    </div>
+                    <a id="download-btn-8" href="files/che260_ht_notes.pdf" download class="download-btn">⬇ Download Current File</a>
+                </div>
+                <div class="description-container">
+                    <div class="star-rating-container">
+                        <div class="stars" style="--rating: 4.0;" aria-label="Rating of this course is 4.0 out of 5"></div>
+                        <span class="rating-text">4.0 / 5.0</span>
+                    </div>
+                    <h3>Summary</h3>
+                    <p>A highly practical course on heat, work, and energy conversion. Heat Transfer allowed a better understanding of thermal interaction between objects and systems.</p>
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>First and Second Laws of Thermodynamics.</li>
+                        <li>Analysis of power and refrigeration cycles.</li>
+                        <li>Heat transfer mechanisms and applications in different systems.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('courses')">Back to Courses &rarr;</button>
+            </div>
+        </section>
+
+        <!-- COURSE DETAIL VIEW 9 -->
+        <section id="course-detail-9" class="section">
+            <h2 style="text-align: left;">ECE253 - Digital and Computer Systems</h2>
+            <div class="course-detail-layout">
+                <div class="gallery-container">
+                    <img id="course-img-9" class="main-image" src="images/ece253_notes.png" alt="Course Image">
+                    <p id="caption-course-img-9" class="image-caption">My Notes</p>
+                    <div class="thumbnail-row">
+                        <img src="images/ece253_notes.png" data-caption="My Notes" data-download="files/ece253_notes.pdf" class="active-thumb" onclick="changeCourseGalleryImage('course-img-9', 'caption-course-img-9', 'download-btn-9', this)">
+                        <img src="images/ece253_mcs.png" data-caption="My Midterm Cheat Sheet" data-download="files/ece253_mcs.pdf" onclick="changeCourseGalleryImage('course-img-9', 'caption-course-img-9', 'download-btn-9', this)">
+                        <img src="images/ece253_fcs.png" data-caption="My Finals Cheat Sheet" data-download="files/ece253_fcs.pdf" onclick="changeCourseGalleryImage('course-img-9', 'caption-course-img-9', 'download-btn-9', this)">
+                    </div>
+                    <a id="download-btn-9" href="files/ece253_notes.pdf" download class="download-btn">⬇ Download Current File</a>
+                </div>
+                <div class="description-container">
+                    <div class="star-rating-container">
+                        <div class="stars" style="--rating: 5.0;" aria-label="Rating of this course is 5.0 out of 5"></div>
+                        <span class="rating-text">5.0 / 5.0</span>
+                    </div>
+                    <h3>Summary</h3>
+                    <p>Introduced the hardware side of computing. Designing and assembling digital logic circuits from scratch was incredibly satisfying and helped demystify microprocessors.</p>
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Boolean algebra, logic gates, latches and flip flops.</li>
+                        <li>Combinational and sequential circuit analysis, simple GPU design.</li>
+                        <li>Programming languages including SystemVerilog and Assembly.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('courses')">Back to Courses &rarr;</button>
+            </div>
+        </section>
+
+        <!-- COURSE DETAIL VIEW 10 (No Notes/Images) -->
+        <section id="course-detail-10" class="section">
+            <h2 style="text-align: left;">ESC203 - Engineering and Society (Ethics)</h2>
+            <div class="course-detail-layout">
+                <div class="description-container" style="flex: 100%; min-width: 100%;">
+                    <div class="star-rating-container">
+                        <div class="stars" style="--rating: 4.0;" aria-label="Rating of this course is 4.0 out of 5"></div>
+                        <span class="rating-text">4.0 / 5.0</span>
+                    </div>
+                    <h3>Summary</h3>
+                    <p>Provided a crucial, non-technical perspective on the ethical responsibilities of professional engineers. Discussing case studies of modern engineering ethics highlighted the profound impact our designs have on society.</p>
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Ethical frameworks and professional codes of conduct.</li>
+                        <li>Analysis of engineering disasters and systemic failures.</li>
+                        <li>Equity, sustainability, and environmental considerations in design.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('courses')">Back to Courses &rarr;</button>
+            </div>
+        </section>
+
+        <!-- COURSE DETAIL VIEW 11 -->
+        <section id="course-detail-11" class="section">
+            <h2 style="text-align: left;">MAT292 - Ordinary Differential Equations</h2>
+            <div class="course-detail-layout">
+                <div class="gallery-container">
+                    <img id="course-img-11" class="main-image" src="images/mat292_notes.png" alt="Course Image">
+                    <p id="caption-course-img-11" class="image-caption">My Notes</p>
+                    <div class="thumbnail-row">
+                        <img src="images/mat292_notes.png" data-caption="My Notes" data-download="files/mat292_notes.pdf" class="active-thumb" onclick="changeCourseGalleryImage('course-img-11', 'caption-course-img-11', 'download-btn-11', this)">
+                    </div>
+                    <a id="download-btn-11" href="files/mat292_notes.pdf" download class="download-btn">⬇ Download Current File</a>
+                </div>
+                <div class="description-container">
+                    <div class="star-rating-container">
+                        <div class="stars" style="--rating: 5.0;" aria-label="Rating of this course is 5.0 out of 5"></div>
+                        <span class="rating-text">5.0 / 5.0</span>
+                    </div>
+                    <h3>Summary</h3>
+                    <p>The mathematical backbone of dynamic systems. Understanding how to model physical and mechanical phenomena with ODEs is especially important in engineering.
+                        Project provided the chance to show the importance of ODE in real world applications. All cheat sheets are handwritten and I lost all of them :D.
+                    </p>
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Solving first and higher-order ODEs.</li>
+                        <li>Applications of Laplace transforms in engineering.</li>
+                        <li>Solving systems of linear differential equations.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('courses')">Back to Courses &rarr;</button>
+            </div>
+        </section>
+
+        <!-- COURSE DETAIL VIEW 12 -->
+        <section id="course-detail-12" class="section">
+            <h2 style="text-align: left;">PHY293 - Waves and Modern Physics</h2>
+            <div class="course-detail-layout">
+                <div class="gallery-container">
+                    <img id="course-img-12" class="main-image" src="images/phy293_notes.png" alt="Course Image">
+                    <p id="caption-course-img-12" class="image-caption">My Notes</p>
+                    <div class="thumbnail-row">
+                        <img src="images/phy293_notes.png" data-caption="My Notes" data-download="files/phy293_notes.pdf" class="active-thumb" onclick="changeCourseGalleryImage('course-img-12', 'caption-course-img-12', 'download-btn-12', this)">
+                        <img src="images/Charge_To_Mass_Ratio_Lab.png" data-caption="Charge to Mass Ratio Lab (Done with Jadyn Zeng)" data-download="files/Charge_To_Mass_Ratio_Lab.pdf" onclick="changeCourseGalleryImage('course-img-12', 'caption-course-img-12', 'download-btn-12', this)">
+                        <img src="images/Hall_Effect_Lab.png" data-caption="Hall Effect Lab (Done with Jadyn Zeng)" data-download="files/Hall_Effect_Lab.pdf" onclick="changeCourseGalleryImage('course-img-12', 'caption-course-img-12', 'download-btn-12', this)">
+                    </div>
+                    <a id="download-btn-12" href="files/phy293_notes.pdf" download class="download-btn">⬇ Download Current File</a>
+                </div>
+                <div class="description-container">
+                    <div class="star-rating-container">
+                        <div class="stars" style="--rating: 4.0;" aria-label="Rating of this course is 4.0 out of 5"></div>
+                        <span class="rating-text">4.0 / 5.0</span>
+                    </div>
+                    <h3>Summary</h3>
+                    <p>Explored oscillations, wave mechanics, and an introduction to relativity</p>
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Harmonic oscillators and resonance theory.</li>
+                        <li>Provided an introduction to quantum mechanics.</li>
+                        <li>Special relativity fundamentals and time dilation.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('courses')">Back to Courses &rarr;</button>
+            </div>
+        </section>
+
+        <!-- COURSE DETAIL VIEW 13 -->
+        <section id="course-detail-13" class="section">
+            <h2 style="text-align: left;">ECE159 - Fundamentals of Electric Circuits</h2>
+            <div class="course-detail-layout">
+                <div class="gallery-container">
+                    <img id="course-img-13" class="main-image" src="images/ece159_notes.png" alt="Course Image">
+                    <p id="caption-course-img-13" class="image-caption">My Notes</p>
+                    <div class="thumbnail-row">
+                        <img src="images/ece159_notes.png" data-caption="My Notes" data-download="files/ece159_notes.pdf" class="active-thumb" onclick="changeCourseGalleryImage('course-img-13', 'caption-course-img-13', 'download-btn-13', this)">
+                        <img src="images/ece159_mcs.png" data-caption="Midterm Cheat Sheet" data-download="files/ece159_mcs.pdf" onclick="changeCourseGalleryImage('course-img-13', 'caption-course-img-13', 'download-btn-13', this)">
+                        <img src="images/ece159_fcs.png" data-caption="Final Cheat Sheet" data-download="files/ece159_fcs.pdf" onclick="changeCourseGalleryImage('course-img-13', 'caption-course-img-13', 'download-btn-13', this)">
+                    </div>
+                    <a id="download-btn-13" href="files/ece159_notes.pdf" download class="download-btn">⬇ Download Current File</a>
+                </div>
+                <div class="description-container">
+                    <div class="star-rating-container">
+                        <div class="stars" style="--rating: 5.0;" aria-label="Rating of this course is 5.0 out of 5"></div>
+                        <span class="rating-text">5.0 / 5.0</span>
+                    </div>
+                    <h3>Summary</h3>
+                    <p>The gateway to electronics. Learning nodal and mesh analysis allows the analysis of different AC or DC circuits.</p>
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Ohm's and Kirchhoff's fundamental laws.</li>
+                        <li>Thevenin and Norton equivalent circuits.</li>
+                        <li>First-order RC and RL transient response analysis.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('courses')">Back to Courses &rarr;</button>
+            </div>
+        </section>
+
+        <!-- COURSE DETAIL VIEW 14 (No Notes/Images) -->
+        <section id="course-detail-14" class="section">
+            <h2 style="text-align: left;">ESC102 - Praxis II</h2>
+            <div class="course-detail-layout">
+                <div class="description-container" style="flex: 100%; min-width: 100%;">
+                    <div class="star-rating-container">
+                        <div class="stars" style="--rating: 4.0;" aria-label="Rating of this course is 4.0 out of 5"></div>
+                        <span class="rating-text">4.0 / 5.0</span>
+                    </div>
+                    <h3>Summary</h3>
+                    <p>A design course that focused on local engineering problems. In my year, it related to right-hook collision problems in Toronto. This allowed us to interact with stakeholders, design and make scaled prototypes to investigate these issues.</p>
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Stakeholder interaction and communication skills.</li>
+                        <li>Design thinking and problem-solving methodologies.</li>
+                        <li>Presentation and Graphics Design</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('courses')">Back to Courses &rarr;</button>
+            </div>
+        </section>
+
+        <!-- COURSE DETAIL VIEW 15 (No Notes/Images) -->
+        <section id="course-detail-15" class="section">
+            <h2 style="text-align: left;">ESC190 - Computer Algorithms and Data Structures</h2>
+            <div class="course-detail-layout">
+                <div class="description-container" style="flex: 100%; min-width: 100%;">
+                    <div class="star-rating-container">
+                        <div class="stars" style="--rating: 5.0;" aria-label="Rating of this course is 5.0 out of 5"></div>
+                        <span class="rating-text">5.0 / 5.0</span>
+                    </div>
+                    <h3>Summary</h3>
+                    <p>An intensive dive into C programming and algorithmic efficiency. Building complex data structures from scratch and managing memory manually was challenging but extremely rewarding for software optimization. Labs and projects are challenging but very rewarding</p>
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Memory management, pointers, and memory allocation in C.</li>
+                        <li>Implementation of linked lists, trees, graphs, and hash tables.</li>
+                        <li>Time and space complexity analysis (Big-O notation).</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('courses')">Back to Courses &rarr;</button>
+            </div>
+        </section>
+
+        <!-- COURSE DETAIL VIEW 16 -->
+        <section id="course-detail-16" class="section">
+            <h2 style="text-align: left;">ESC195 - Calculus II</h2>
+            <div class="course-detail-layout">
+                <div class="gallery-container">
+                    <img id="course-img-16" class="main-image" src="images/esc195_notes.png" alt="Course Image">
+                    <p id="caption-course-img-16" class="image-caption">My Notes</p>
+                    <div class="thumbnail-row">
+                        <img src="images/esc195_notes.png" data-caption="My Notes" data-download="files/esc195_notes.pdf" class="active-thumb" onclick="changeCourseGalleryImage('course-img-16', 'caption-course-img-16', 'download-btn-16', this)">
+                    </div>
+                    <a id="download-btn-16" href="files/esc195_notes.pdf" download class="download-btn">⬇ Download Current File</a>
+                </div>
+                <div class="description-container">
+                    <div class="star-rating-container">
+                        <div class="stars" style="--rating: 5.0;" aria-label="Rating of this course is 5.0 out of 5"></div>
+                        <span class="rating-text">5.0 / 5.0</span>
+                    </div>
+                    <h3>Summary</h3>
+                    <p>A steep step up from introductory calculus, focusing heavily on integration techniques, sequences, and series, Gradients and Lagrange Multipliers and ended with integral equations and Feymann's techniques. Highly essential for mathematically modeling continuous systems.</p>
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Advanced integration methodologies.</li>
+                        <li>Convergence of sequences and infinite series.</li>
+                        <li>Taylor and Maclaurin series expansions for approximations.</li>
+                        <li>Gradients and Lagrange Multipliers.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('courses')">Back to Courses &rarr;</button>
+            </div>
+        </section>
+
+        <!-- COURSE DETAIL VIEW 17 -->
+        <section id="course-detail-17" class="section">
+            <h2 style="text-align: left;">MAT185 - Linear Algebra</h2>
+            <div class="course-detail-layout">
+                <div class="gallery-container">
+                    <img id="course-img-17" class="main-image" src="images/mat185_notes.png" alt="Course Image">
+                    <p id="caption-course-img-17" class="image-caption">My Notes</p>
+                    <div class="thumbnail-row">
+                        <img src="images/mat185_notes.png" data-caption="My Notes" data-download="files/mat185_notes.pdf" class="active-thumb" onclick="changeCourseGalleryImage('course-img-17', 'caption-course-img-17', 'download-btn-17', this)">
+                    </div>
+                    <a id="download-btn-17" href="files/mat185_notes.pdf" download class="download-btn">⬇ Download Current File</a>
+                </div>
+                <div class="description-container">
+                    <div class="star-rating-container">
+                        <div class="stars" style="--rating: 5.0;" aria-label="Rating of this course is 5.0 out of 5"></div>
+                        <span class="rating-text">5.0 / 5.0</span>
+                    </div>
+                    <h3>Summary</h3>
+                    <p>A highly abstract but universally applicable course. Gained a fundamental undertstanding of vectors and matrices which opens the gate to calculus, differential equations, and more engineering concepts. Proofs are deadly but also the fun part.</p>
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Vector spaces and subspaces analysis.</li>
+                        <li>Eigenvalues, eigenvectors, and diagonalization.</li>
+                        <li>Linear transformations and their matrix representations.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('courses')">Back to Courses &rarr;</button>
+            </div>
+        </section>
+
+        <!-- COURSE DETAIL VIEW 18 -->
+        <section id="course-detail-18" class="section">
+            <h2 style="text-align: left;">MSE160 - Molecules and Materials</h2>
+            <div class="course-detail-layout">
+                <div class="gallery-container">
+                    <img id="course-img-18" class="main-image" src="images/mse160_crystal.png" alt="Course Image">
+                    <p id="caption-course-img-18" class="image-caption">Math of Crystal Structures</p>
+                    <div class="thumbnail-row">
+                        <img src="images/mse160_crystal.png" data-caption="Math of Crystal Structures" data-download="files/mse160_crystal.pdf" class="active-thumb" onclick="changeCourseGalleryImage('course-img-18', 'caption-course-img-18', 'download-btn-18', this)">
+                    </div>
+                    <a id="download-btn-18" href="files/mse160_crystal.pdf" download class="download-btn">⬇ Download Current File</a>
+                </div>
+                <div class="description-container">
+                    <div class="star-rating-container">
+                        <div class="stars" style="--rating: 4.0;" aria-label="Rating of this course is 4.0 out of 5"></div>
+                        <span class="rating-text">4.0 / 5.0</span>
+                    </div>
+                    <h3>Summary</h3>
+                    <p>Connected microscopic atomic structures to macroscopic engineering properties. Crucial for understanding stress limits, fatigue, and proper material selection in engineering design.</p>
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Crystal structures and material defects.</li>
+                        <li>Mechanical properties of metals, polymers, and ceramics.</li>
+                        <li>Interpreting phase diagrams and heat treatment effects.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('courses')">Back to Courses &rarr;</button>
+            </div>
+        </section>
+
+        <!-- COURSE DETAIL VIEW 19 -->
+        <section id="course-detail-19" class="section">
+            <h2 style="text-align: left;">CIV102 - Structures and Materials</h2>
+            <div class="course-detail-layout">
+                <div class="gallery-container">
+                    <img id="course-img-19" class="main-image" src="images/civ102_notes.png" alt="Course Image">
+                    <p id="caption-course-img-19" class="image-caption">My Notes and finals cheat sheet</p>
+                    <div class="thumbnail-row">
+                        <img src="images/civ102_notes.png" data-caption="My Notes and finals cheat sheet" data-download="files/civ102_notes.pdf" class="active-thumb" onclick="changeCourseGalleryImage('course-img-19', 'caption-course-img-19', 'download-btn-19', this)">
+                    </div>
+                    <a id="download-btn-19" href="files/civ102_notes.pdf" download class="download-btn">⬇ Download Current File</a>
+                </div>
+                <div class="description-container">
+                    <div class="star-rating-container">
+                        <div class="stars" style="--rating: 5.0;" aria-label="Rating of this course is 5.0 out of 5"></div>
+                        <span class="rating-text">5.0 / 5.0</span>
+                    </div>
+                    <h3>Summary</h3>
+                    <p>One of the most defining and challenging courses of first year. Designing, analyzing, and ultimately breaking a matboard bridge taught me the harsh realities of safety factors and structural failure. Amazing course overall.</p>
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Static equilibrium and 2D truss analysis.</li>
+                        <li>Constructing bending moment and shear force diagrams.</li>
+                        <li>Calculating material stress, strain, and failure criteria.</li>
+                        <li>Bridge design with concrete.</li>
+                        <li>Method of virtual work.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('courses')">Back to Courses &rarr;</button>
+            </div>
+        </section>
+        
+        <!-- COURSE DETAIL VIEW 20 (No Notes/Images) -->
+        <section id="course-detail-20" class="section">
+            <h2 style="text-align: left;">ESC101 - Praxis I</h2>
+            <div class="course-detail-layout">
+                <div class="description-container" style="flex: 100%; min-width: 100%;">
+                    <div class="star-rating-container">
+                        <div class="stars" style="--rating: 3.0;" aria-label="Rating of this course is 3.0 out of 5"></div>
+                        <span class="rating-text">3.0 / 5.0</span>
+                    </div>
+                    <h3>Summary</h3>
+                    <p>An introductory design course to engineering design. Introduces the FDCR framework which connects with a lot of engineering work in the future. However, this course is sometimes confusing without practical applications or real-world examples.</p>
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>FDCR framework and its applications.</li>
+                        <li>Engineering communications.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('courses')">Back to Courses &rarr;</button>
+            </div>
+        </section>
+
+        <!-- COURSE DETAIL VIEW 21 (No Notes/Images) -->
+        <section id="course-detail-21" class="section">
+            <h2 style="text-align: left;">ESC103 - Engineering Mathematics and Computation</h2>
+            <div class="course-detail-layout">
+                <div class="description-container" style="flex: 100%; min-width: 100%;">
+                    <div class="star-rating-container">
+                        <div class="stars" style="--rating: 4.0;" aria-label="Rating of this course is 4.0 out of 5"></div>
+                        <span class="rating-text">4.0 / 5.0</span>
+                    </div>
+                    <h3>Summary</h3>
+                    <p>Introductory vector and matrix algebra for engineering applications. Teaches MATLAB for future applications</p>
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Matrix and vector operations</li>
+                        <li>Iterative methods for solving massive linear systems.</li>
+                        <li>MATLAB and how it is applied in engineering contexts.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('courses')">Back to Courses &rarr;</button>
+            </div>
+        </section>
+
+        <!-- COURSE DETAIL VIEW 22 (No Notes/Images) -->
+        <section id="course-detail-22" class="section">
+            <h2 style="text-align: left;">ESC180 - Introduction to Computer Programming</h2>
+            <div class="course-detail-layout">
+                <div class="description-container" style="flex: 100%; min-width: 100%;">
+                    <div class="star-rating-container">
+                        <div class="stars" style="--rating: 5.0;" aria-label="Rating of this course is 5.0 out of 5"></div>
+                        <span class="rating-text">5.0 / 5.0</span>
+                    </div>
+                    <h3>Summary</h3>
+                    <p>A highly structured foundation in Python programming. It moved past basic syntax quickly to focus on procedural logic, structuring efficient algorithms, and adopting good coding practices for engineering data. Labs and projects are challenging but really rewarding.</p>
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Control structures, loops, functions, and recursion.</li>
+                        <li>Array manipulation, searching, and basic sorting algorithms.</li>
+                        <li>Debugging strategies and rigorous testing methodologies.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('courses')">Back to Courses &rarr;</button>
+            </div>
+        </section>
+
+        <!-- COURSE DETAIL VIEW 23 -->
+        <section id="course-detail-23" class="section">
+            <h2 style="text-align: left;">ESC194 - Calculus I</h2>
+            <div class="course-detail-layout">
+                <div class="gallery-container">
+                    <img id="course-img-23" class="main-image" src="images/esc194_notes.png" alt="Course Image">
+                    <p id="caption-course-img-23" class="image-caption">My Notes</p>
+                    <div class="thumbnail-row">
+                        <img src="images/esc194_notes.png" data-caption="My Notes" data-download="files/esc194_notes.pdf" class="active-thumb" onclick="changeCourseGalleryImage('course-img-23', 'caption-course-img-23', 'download-btn-23', this)">
+                    </div>
+                    <a id="download-btn-23" href="files/esc194_notes.pdf" download class="download-btn">⬇ Download Current File</a>
+                </div>
+                <div class="description-container">
+                    <div class="star-rating-container">
+                        <div class="stars" style="--rating: 5.0;" aria-label="Rating of this course is 5.0 out of 5"></div>
+                        <span class="rating-text">5.0 / 5.0</span>
+                    </div>
+                    <h3>Summary</h3>
+                    <p>A rigorous introduction to university-level mathematics. This course broke down and successfully rebuilt my understanding of limits and derivatives starting strictly from first principles. Amazing professor that changed my understanding and appreciation for Calculus fundamentally..</p>
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Epsilon-delta definition and proofs of limits.</li>
+                        <li>Advanced differentiation theorems and applications.</li>
+                        <li>Mathematical optimization and curve sketching.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('courses')">Back to Courses &rarr;</button>
+            </div>
+        </section>
+
+        <!-- COURSE DETAIL VIEW 24 -->
+        <section id="course-detail-24" class="section">
+            <h2 style="text-align: left;">PHY180 - Classical Mechanics</h2>
+            <div class="course-detail-layout">
+                <div class="gallery-container">
+                    <img id="course-img-24" class="main-image" src="images/phy180_notes.png" alt="Course Image">
+                    <p id="caption-course-img-24" class="image-caption">My Notes</p>
+                    <div class="thumbnail-row">
+                        <img src="images/phy180_notes.png" data-caption="My Notes" data-download="files/phy180_notes.pdf" class="active-thumb" onclick="changeCourseGalleryImage('course-img-24', 'caption-course-img-24', 'download-btn-24', this)">
+                    </div>
+                    <a id="download-btn-24" href="files/phy180_notes.pdf" download class="download-btn">⬇ Download Current File</a>
+                </div>
+                <div class="description-container">
+                    <div class="star-rating-container">
+                        <div class="stars" style="--rating: 4.0;" aria-label="Rating of this course is 4.0 out of 5"></div>
+                        <span class="rating-text">4.0 / 5.0</span>
+                    </div>
+                    <h3>Summary</h3>
+                    <p>Applied Newtonian physics to complex, real-world problems. A must-have foundation for later physics course. Heavy emphasis on modelling real world phyiscal systems. The pendulum lab was informative but lacked organization. </p>
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Kinematics and dynamics of moving objects.</li>
+                        <li>Conservation laws of energy and momentum.</li>
+                        <li>Complex rotational motion and (sometimes not) rigid bodies analysis.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('courses')">Back to Courses &rarr;</button>
+            </div>
+        </section>
+
+        <!-- SECTION 4: Skills & Resume -->
+        <section id="skills" class="section">
+            <h2>Skills & Resume</h2>
+            <div class="resume-container">
+                <h3>Rooney Cheung's Resume</h3>
+                <a href="files/rooney_cheung_resume.pdf" download class="download-resume">📄 Download PDF Resume</a>
+                <p class="resume-caption">Download my full, updated professional resume above to see a detailed breakdown of my experience, skills, courses, projects and involvement.</p>
+                
+                <div class="grid-container" style="text-align: left; margin-top: 40px; width: 100%;">
+                    <div class="card">
+                        <h3>Engineering and Math</h3>
+                        <p>(Vector) Calculus, Linear Algebra, ODE/PDE, Flow visualization, Truss Design, Structural Analysis, Circuit Design and Analysis, Material Properties, Data strcutures,
+                             Thermodynamics and Heat Transfer Analysis, Logic Gates and GPU Programming, Probabilistic and Statistical Analysis. </p>
+                    </div>
+                    <div class="card">
+                        <h3>Programming and Web Development</h3>
+                        <p>Python, C (with Arduino), JavaScript, HTML, CSS, RISC-V Assembly, MATLAB, SystemVerilog, Excel VBA</p>
+                    </div>
+                    <div class="card">
+                        <h3>CAD Design</h3>
+                        <p>Fusion360, Onshape</p>
+                    </div>
+                    <div class="card">
+                        <h3>Graphics Design</h3>
+                        <p>Producing one-pagers, presentations, posters.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Laboratory Design</h3>
+                        <p>Handling Lab apparatus and safety protocols, data and uncertainty analysis.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Data Analysis</h3>
+                        <p>Using Excel/Google Sheets with built in formulas and graphs to organise and extract critical information(In both accounting and engineering settings).</p>
+                    </div>
+                    <div class="card">
+                        <h3>Team Communication and Project Management</h3>
+                        <p>Communication through various channels, Planning via Google/Outlook Calendar, Equal division of work and roles.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Misc.</h3>
+                        <p>Ethical Analysis, Literature Review, Social media management.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: Past Projects -->
+        <section id="projects" class="section">
+            <h2>Past Projects</h2>
+            <p>Click on a project to view its gallery and details.</p>
+            <div class="projects-grid">
+
+                <div class="project-square" onclick="navigateTo('project-detail-1')">
+                    <h3>Holdover Fire Monitor System</h3>
+                    <p>Engineering Project Management/Design/Communications, Mechanical/Electrical/Software Integration, Python, Prototyping</p>
+                </div>
+                <div class="project-square" onclick="navigateTo('project-detail-2')">
+                    <h3>Evaluation of Haptic and Visual Cues in Maze Navigation Tasks</h3>
+                    <p>Statistical Research and Analysis, R</p>
+                </div>
+                <div class="project-square" onclick="navigateTo('project-detail-3')">
+                    <h3>TimeTabler</h3>
+                    <p>Software Development, Personal Project, Python</p>
+                </div>
+                <div class="project-square" onclick="navigateTo('project-detail-4')">
+                    <h3>PokeStudy</h3>
+                    <p>Software/Game Development, Personal Project, HTML/CSS/JavaScript</p>
+                </div>
+                <div class="project-square" onclick="navigateTo('project-detail-5')">
+                    <h3>Applying ODE-Based Pharmacokinetic Models to Optimize Antihistamine Dosing Schedules</h3>
+                    <p>ODE, Mathematical Modeling and Optimization, Numerical Computation, MATLAB</p>
+                </div>
+                <div class="project-square" onclick="navigateTo('project-detail-6')">
+                    <h3>Sorteria (Right-Hook collision detection system)</h3>
+                    <p>Engineering Project Management/Design/Communications, Computer Vision, App Development, Python, Prototyping</p>
+                </div>
+                <div class="project-square" onclick="navigateTo('project-detail-7')">
+                    <h3>Pendulum Study Project</h3>
+                    <p>Laboratory Skills, Physics (Oscillations), Data/Uncertainty Analysis</p>
+                </div>
+                <div class="project-square" onclick="navigateTo('project-detail-8')">
+                    <h3>Matboard Bridge</h3>
+                    <p>Structural Analysis, Engineering Design, Engineering Communication, MATLAB</p>
+                </div>
+                <div class="project-square project-template" onclick="navigateTo('project-detail-9')">
+                    <h3>To Be Added</h3>
+                    <p>Project Template</p>
+                </div>
+            </div>
+        </section>
+
+        
+        <!-- PROJECT DETAIL VIEW 1 -->
+        <section id="project-detail-1" class="section">
+            <h2 style="text-align: left;">Holdover Fire Monitor System</h2>
+            <div class="project-detail-layout">
+                <div class="gallery-container">
+                    <img id="main-img-1" class="main-image" src="images/P1_team.jpg" alt="Holdover Fire Monitor System Main Image">
+                    <p id="caption-project-img-1" class="image-caption">Our presentation and Team</p>
+                    <div class="thumbnail-row">
+                        <img src="images/P1_team.jpg" data-caption="Our presentation and Team" class="active-thumb" onclick="changeGalleryImage('main-img-1', 'caption-project-img-1', this)">
+                        <img src="images/P1_Assembly.jpeg" data-caption="Assembly Process of the Prototype" class="active-thumb" onclick="changeGalleryImage('main-img-1', 'caption-project-img-1', this)">
+                        <img src="images/P1_breakdown.png" data-caption="Breakdown of the Prototype" class="active-thumb" onclick="changeGalleryImage('main-img-1', 'caption-project-img-1', this)">
+                        <img src="images/P1_CAD.png" data-caption="Side Profile of our design" class="active-thumb" onclick="changeGalleryImage('main-img-1', 'caption-project-img-1', this)">
+                        <img src="images/P1_CADDesign.png" data-caption="Design Choices for CAD" class="active-thumb" onclick="changeGalleryImage('main-img-1', 'caption-project-img-1', this)">
+                        <img src="images/P1_SAW.jpg" data-caption="Me operating a saw during testing site construction" class="active-thumb" onclick="changeGalleryImage('main-img-1', 'caption-project-img-1', this)">
+                        <img src="images/P1_soil.png" data-caption="Our team gathering soil for testing" class="active-thumb" onclick="changeGalleryImage('main-img-1', 'caption-project-img-1', this)">
+                        <img src="images/P1_soldering.jpeg" data-caption="Soldering the electrical components" class="active-thumb" onclick="changeGalleryImage('main-img-1', 'caption-project-img-1', this)">
+                        <img src="images/P1_Timetable.png" data-caption="Example timetable of the Project" class="active-thumb" onclick="changeGalleryImage('main-img-1', 'caption-project-img-1', this)">
+                        <img src="images/P1_grafana.png" data-caption="Display of data using Grafana" class="active-thumb" onclick="changeGalleryImage('main-img-1', 'caption-project-img-1', this)">
+                        <img src="images/P1_VA.png" data-caption="Visual Abstract of the Prototype" class="active-thumb" onclick="changeGalleryImage('main-img-1', 'caption-project-img-1', this)">
+                    </div>
+                    <div class="project-downloads">
+                        <a href="files/P1_Design_Overview.pdf" download class="project-download-btn">Design Overview</a>
+                        <a href="files/P1_Prototype_Overview.pdf" download class="project-download-btn">Prototype Overview</a>
+                        <a href="files/P1_VA.pdf" download class="project-download-btn">Visual Abstract</a>
+                    </div>
+                </div>
+                <div class="description-container">
+                    <h3>Project Partners</h3>
+                    <p>This project was a course work for Praxis III, in which I collaborated with Charles Martinez, Oscar Low, Derek Chen, Han Fang and Atharv Kudchadkar.</p>
+                    <h3>Project Overview</h3>
+                    <p>The project involved approaching and consulting stakeholders to understand their needs and constraints, as well as our own independent reserach on existing measurements and development on holdover fires.</p>
+                    <p>Our team worked through the whole engineering process of framing, diverging and converging to a final prototype</p>
+                    <p>We were able to design 3 subsystems: a mechanically CAD produced screw shell; Electrical subsystem with breadboard, sensors that are soldered; Software subsystem where Python controls the sensors as well as Grafana was used for display. This prototype had to be functionally tested based on metrics we reserached on.</p>
+                    <p>In addition, we worked closely with one another to ensure consistent documentation and explanation of our work to produce a comprehensive report/dossier.</p>
+                    <p>We also needed to present our findings to fellow university students.</p>
+                    <h3>Skills Applied</h3>
+                    <ul>
+                        <li>CAD: The whole screw shell was CAD-designed in Fusion360.</li>
+                        <li>Python: The sensors were controlled using Python and a Raspberry Pi.</li>
+                        <li>Circuit Design: The electrical subsystem was designed and built on a breadboard.</li>
+                        <li>Engineering Project Management: The project was managed throughout its development lifecycle.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('projects')">Back to Projects &rarr;</button>
+            </div>
+        </section>
+
+        <!-- PROJECT DETAIL VIEW 2 -->
+        <section id="project-detail-2" class="section">
+            <h2 style="text-align: left;">Evaluation of Haptic and Visual Cues in Maze Navigation Tasks</h2>
+            <div class="project-detail-layout">
+                <div class="gallery-container">
+                    <img id="main-img-2" class="main-image" src="images/P2_maze.png" alt="Evaluation of Haptic and Visual Cues in Maze Navigation Tasks Main Image">
+                    <p id="caption-project-img-2" class="image-caption">Maze Navigation Task In Python</p>
+                    <div class="thumbnail-row">
+                        <img src="images/P2_maze.png" data-caption="Maze Navigation Task In Python" class="active-thumb" onclick="changeGalleryImage('main-img-2', 'caption-project-img-2', this)">
+                        <img src="images/P2_haptic.jpeg" data-caption="Maze Haptic Vibration Setup done by phone" onclick="changeGalleryImage('main-img-2', 'caption-project-img-2', this)">
+                        <img src="images/P2_correlation.png" data-caption="Correlation plots example (See Report)"  onclick="changeGalleryImage('main-img-2', 'caption-project-img-2', this)">
+                        <img src="images/P2_qq.png" data-caption="Q-Q plots example (See Report)" onclick="changeGalleryImage('main-img-2', 'caption-project-img-2', this)">
+                        <img src="images/P2_scatter.png" data-caption="Scatter plots example (See Report)"  onclick="changeGalleryImage('main-img-2', 'caption-project-img-2', this)">
+                    </div>
+                    <div class="project-downloads">
+                        <a href="files/mie286_report.pdf" download class="project-download-btn">Project Report</a>
+                    </div>
+                    <div class="project-downloads">
+                        <a href="files/mie286_proposal.pdf" download class="project-download-btn">Project Proposal</a>
+                    </div>
+                    <div class="project-downloads">
+                        <a href="https://github.com/goldenpuffle123/stats-mazes" target="_blank" rel="noopener noreferrer" class="project-download-btn">Maze Code Github</a>
+                    </div>
+                </div>
+                <div class="description-container">
+                    <h3>Project Partners</h3>
+                    <p>This project was a course work for MIE286, in which I collaborated with Oscar Low and Oscar Liang.</p>
+                    <h3>Project Overview</h3>
+                    <p>The project involved picking a specific task and investigating the effects of external influence on the given task.</p>
+                    <p>To achieve this, our team designed a maze game on python, feedback happens whenever the subject touches the wall. Additionally, we also developed a vibrating app on Android that provided haptic feedback. The visual feedback was inplemented by the maze game's code itself.</p>
+                    <p>Our team invited 48 students in total and divided them into 2 groups. One group with visual feedback and the other with haptic feedback. We then recorded their time spent to finish the maze (speed) and the time spent touching the maze's wall (accuracy).</p>
+                    <p>Though no significant relations were established, this provided a fundamental understanding in actual statistical experimental setup.</p>
+                    <h3>Skills Applied</h3>
+                    <ul>
+                        <li>R: Data analysis and visualization.</li>
+                        <li>Python: The programming language used for developing the maze game.</li>
+                        <li>Experimental Control: Ensuring consistent and reliable experimental procedures.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('projects')">Back to Projects &rarr;</button>
+            </div>
+        </section>
+
+        <!-- PROJECT DETAIL VIEW 3 -->
+        <section id="project-detail-3" class="section">
+            <h2 style="text-align: left;">TimeTabler</h2>
+            <div class="project-detail-layout">
+                <div class="gallery-container">
+                    <img id="main-img-3" class="main-image" src="images/P3_timetable.png" alt="TimeTabler Main Image">
+                    <p id="caption-project-img-3" class="image-caption">Timetable outputted</p>
+                    <div class="thumbnail-row">
+                        <img src="images/P3_timetable.png" data-caption="Timetable outputted" class="active-thumb" onclick="changeGalleryImage('main-img-3', 'caption-project-img-3', this)">
+                        <img src="images/P3_todo.png" data-caption="to-do file example" onclick="changeGalleryImage('main-img-3', 'caption-project-img-3', this)">
+                    </div>
+                    <div class="project-downloads">
+                        <a href="https://github.com/sailorroon/TimeTabler/blob/main" target="_blank" rel="noopener noreferrer" class="project-download-btn">TimeTabler Github</a>
+                    </div>
+                </div>
+                <div class="description-container">
+                    <h3>Project Overview</h3>
+                    <p>The was a simple project made to solve a daily problem that was occuring for me: Not sure what to prioritize doing in my To-Do list</p>
+                    <p>This python script intakes a simple to_do.txt and outputs a calendar (also a txt file formed by dashes) that visualize whats due at what time.</p>
+                    <p>The user can rate the priority of each task based on their importance and urgency.</p>
+                    <p>This allows the code to output a specifically tailored order of tasks to finish based on a mathematical model weighing the due date and the priority's influence</p>
+                    <h3>Skills Applied</h3>
+                    <ul>
+                        <li>Mathematical Modeling: Picking the appropriate model to represent the problem.</li>
+                        <li>Python: The programming language used for developing the code.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('projects')">Back to Projects &rarr;</button>
+            </div>
+        </section>
+
+        <!-- PROJECT DETAIL VIEW 4 -->
+        <section id="project-detail-4" class="section">
+            <h2 style="text-align: left;">PokeStudy</h2>
+            <div class="project-detail-layout">
+                <div class="gallery-container">
+                    <img id="main-img-4" class="main-image" src="images/P4_home.png" alt="PokeStudy Main Image">
+                    <p id="caption-project-img-4" class="image-caption">PokeStudy Home</p>
+                    <div class="thumbnail-row">
+                        <img src="images/P4_home.png" data-caption="PokeStudy Home" class="active-thumb" onclick="changeGalleryImage('main-img-4', 'caption-project-img-4', this)">
+                        <img src="images/P4_admin.png" data-caption="Admin Panel" onclick="changeGalleryImage('main-img-4', 'caption-project-img-4', this)">
+                        <img src="images/P4_dex.png" data-caption="Pokedex Page" onclick="changeGalleryImage('main-img-4', 'caption-project-img-4', this)">
+                        <img src="images/P4_start.png" data-caption="Settings Page before the game" onclick="changeGalleryImage('main-img-4', 'caption-project-img-4', this)">
+                        <img src="images/P4_update.png" data-caption="Update Log" onclick="changeGalleryImage('main-img-4', 'caption-project-img-4', this)">
+                        <img src="images/P4_game.png" data-caption="Gameplay" onclick="changeGalleryImage('main-img-4', 'caption-project-img-4', this)">
+                    </div>
+                    <div class="project-downloads">
+                        <a href="https://sailorroon.github.io/pokestudy/" target="_blank" rel="noopener noreferrer" class="project-download-btn">PokeStudy</a>
+                    </div>
+                </div>
+                <div class="description-container">
+                    <h3>Project Overview</h3>
+                    <p>This project originated from the idea of allowing my "trainer" to go out and catch pokemons while I'm idling and studying</p>
+                    <p>Built completely on HTML, CSS and Javascript, it includes features such as:</p>
+                    <ul>
+                        <li>Creating Pokeball patterns using CSS</li>
+                        <li>Pulling Data from PokeAPI to include all Pokemon Gifs, Sprites, States (Shiny/regional) and PokeDex Information.</li>
+                        <li>A Functional PokeDex that tracks the user's catch</li>
+                        <li>Settings during the AFK period, including Admin settings that work on a password system</li>
+                        <li>Random Pokemon spawning as well as pokeball pick</li>
+                        <li>Applying the catch formula to decide whether or not the user successfully catches the Pokemon.</li>
+                    </ul>
+                    <p>This Project was well received by Pokemon players of my year and received positive feedback for its innovative approach to a study app.</p>
+                    <h3>Skills Applied</h3>
+                    <ul>
+                        <li>Algorithm usage: Implementing the catch formula and other game mechanics.</li>
+                        <li>HTML, CSS and JavaScript: The programming language used for developing the code.</li>
+                        <li>Password systems: Implementing a secure password-based admin system.</li>
+                        <li>Database Integration: Connecting to and managing data from external APIs.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('projects')">Back to Projects &rarr;</button>
+            </div>
+        </section>
+
+        <!-- PROJECT DETAIL VIEW 5 -->
+        <section id="project-detail-5" class="section">
+            <h2 style="text-align: left;">Applying ODE-Based Pharmacokinetic Models to Optimize Antihistamine Dosing Schedules</h2>
+            <div class="project-detail-layout">
+                <div class="gallery-container">
+                    <img id="main-img-5" class="main-image" src="images/P5_3c.png" alt="Applying ODE-Based Pharmacokinetic Models to Optimize Antihistamine Dosing Schedules Main Image">
+                    <p id="caption-project-img-5" class="image-caption">3 Compartmental Model</p>
+                    <div class="thumbnail-row">
+                        <img src="images/P5_3c.png" data-caption="3 Compartmental Model" class="active-thumb" onclick="changeGalleryImage('main-img-5', 'caption-project-img-5', this)">
+                        <img src="images/P5_4c.png" data-caption="4 Compartmental Model" class="active-thumb" onclick="changeGalleryImage('main-img-5', 'caption-project-img-5', this)">
+                    </div>
+                    <div class="project-downloads">
+                        <a href="files/Mat292_report.pdf" download class="project-download-btn">Final Report</a>
+                        <a href="files/Mat292_proposal.pdf" download class="project-download-btn">Project Proposal</a>
+                        <a href="https://github.com/AAAAlekssss/Mat292-Project/tree/main" target="_blank" rel="noopener noreferrer" class="project-download-btn">Algorithm</a>
+                    </div>
+                </div>
+                <div class="description-container">
+                    <h3>Project Partners</h3>
+                    <p>This project was a course work for MAT292, in which I collaborated with Laara Jiwan, Jadyn Zeng and Alex Klaus.</p>
+                    <h3>Project Overview</h3>
+                    <p>This project focuses on Applying ODE-Based Pharmacokinetic Models to Optimize Antihistamine Dosing Schedules, with emphasis on ODE, mathematical modeling and optimization, numerical computation, MATLAB.</p>
+                    <p>In particular, we focused on 2 methods of administration: Intravenous and Oral, represented by 3 and 4 compartmental models respectively.</p>
+                    <p>We were successful in developing models that allow the fine tuning of dosing schedules for different individuals.</p>
+                    <p>That said, more work is required to develop the model's full potential.</p>
+                    <h3>Skills Applied</h3>
+                    <ul>
+                        <li>MATLAB: The Heun and Runge-Kutta method implementation</li>
+                        <li>Mathematical Modeling/ODE: Application of compartmental models for pharmacokinetics</li>
+                        <li>Research on pharmacokinetic principles and their application to drug delivery.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('projects')">Back to Projects &rarr;</button>
+            </div>
+        </section>
+
+        <!-- PROJECT DETAIL VIEW 6 -->
+        <section id="project-detail-6" class="section">
+            <h2 style="text-align: left;">Sorteria (Right-Hook Collision Detection System)</h2>
+            <div class="project-detail-layout">
+                <div class="gallery-container">
+                    <img id="main-img-6" class="main-image" src="images/P6_Team1.png" alt="Sorteria (Right-Hook collision detection system) Main Image">
+                    <p id="caption-project-img-6" class="image-caption">Our Team at the Presentation</p>
+                    <div class="thumbnail-row">
+                        <img src="images/P6_Team1.png" data-caption="Our Team at the Presentation" class="active-thumb" onclick="changeGalleryImage('main-img-6', 'caption-project-img-6', this)">
+                        <img src="images/P6_Team2.jpg" data-caption="Team Members" class="active-thumb" onclick="changeGalleryImage('main-img-6', 'caption-project-img-6', this)">
+                        <img src="images/P6_1P1.png" data-caption="One-Pager Page 1 (Download to view)" class="active-thumb" onclick="changeGalleryImage('main-img-6', 'caption-project-img-6', this)">
+                        <img src="images/P6_1P2.png" data-caption="One-Pager Page 2 (Download to view)" class="active-thumb" onclick="changeGalleryImage('main-img-6', 'caption-project-img-6', this)">
+                        <img src="images/P6_poster.png" data-caption="The complete poster" class="active-thumb" onclick="changeGalleryImage('main-img-6', 'caption-project-img-6', this)">
+                        <img src="images/P6_assembly.jpg" data-caption="The assembled Prototype" class="active-thumb" onclick="changeGalleryImage('main-img-6', 'caption-project-img-6', this)">
+                        <img src="images/P6_Test.jpg" data-caption="Testing of the Prototype in simulation" class="active-thumb" onclick="changeGalleryImage('main-img-6', 'caption-project-img-6', this)">
+                        <img src="images/P6_Test2.jpg" data-caption="Testing the Car detectability of the prototype" class="active-thumb" onclick="changeGalleryImage('main-img-6', 'caption-project-img-6', this)">
+                        <img src="images/P6_Test3.jpg" data-caption="FInal Testing and Group Photo" class="active-thumb" onclick="changeGalleryImage('main-img-6', 'caption-project-img-6', this)">
+                        <img src="images/P6_Visit.jpg" data-caption="Team Outing" class="active-thumb" onclick="changeGalleryImage('main-img-6', 'caption-project-img-6', this)">
+                        <img src="images/P6_MyGoat.jpg" data-caption="Presentation to Professor Guerzhoy" class="active-thumb" onclick="changeGalleryImage('main-img-6', 'caption-project-img-6', this)">
+                    </div>
+                    <div class="project-downloads">
+                        <a href="files/sorteria_poster.pdf" download class="project-download-btn">Sorteria Poster</a>
+                        <a href="files/sorteria_1_pager.pdf" download class="project-download-btn">Sorteria One-Pager</a>
+                    </div>
+                </div>
+                <div class="description-container">
+                    <h3>Project Partners</h3>
+                    <p>This project was a course work for ESC102, in which I collaborated with Junhee Park, Paul Dong and Oscar Low.</p>
+                    <h3>Project Overview</h3>
+                    <p>This project focuses on a specific issue local within Toronto, the right-hook collision at intersections.</p>
+                    <p>It involved consulting one of our professors, Professor Jun Nogami, who was a cyclist and advocate.</p>
+                    <p>Our team came up with multiple viable solutions and ultimately converged on a final design based on research and reasoning.</p>
+                    <p>This solution combined both an application and a camera continously monitoring the surroundings with computer vision, sending a signal when a car is nearby</p>
+                    <p>We implemented the prototype on an actual bicycle and conducted tests to validate our approach.</p>
+                    <p>At the end of the project, we presented our project in Hart House for the public to view with posters, demos and handouts.</p>
+                    <p>Side note, Sorteria is a Greek Goddess that represents safety and protection!</p>
+                    <h3>Skills Applied</h3>
+                    <ul>
+                        <li>Python (Computer Vision): Training a model to detect cars in a near vicinity.</li>
+                        <li>Graphics Design: This project emphasized on creating graphics for presentations.</li>
+                        <li>Engineering Project Management: Planning, organizing, and managing the project deadlines.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('projects')">Back to Projects &rarr;</button>
+            </div>
+        </section>
+
+        <!-- PROJECT DETAIL VIEW 7 -->
+        <section id="project-detail-7" class="section">
+            <h2 style="text-align: left;">Pendulum Study Project</h2>
+            <div class="project-detail-layout">
+                <div class="gallery-container">
+                    <img id="main-img-7" class="main-image" src="images/P7_pendulum_setup.png" alt="Pendulum Study Project Main Image">
+                    <p id="caption-project-img-7" class="image-caption">Pendulum Setup</p>
+                    <div class="thumbnail-row">
+                        <img src="images/P7_pendulum_setup.png" data-caption="Pendulum Setup" class="active-thumb" onclick="changeGalleryImage('main-img-7', 'caption-project-img-7', this)">
+                        <img src="images/P7_pendulum_graph.png" data-caption="Example damped oscillation graph" class="active-thumb" onclick="changeGalleryImage('main-img-7', 'caption-project-img-7', this)">
+                    </div>
+                    <div class="project-downloads">
+                        <a href="files/Pendulum_Report.pdf" download class="project-download-btn">Project Report</a>
+                    </div>
+                </div>
+                <div class="description-container">
+                    <h3>Project Overview</h3>
+                    <p>This independent project was a course work for PHY180, involving the study of pendulum motion, focusing on understanding the underlying physics principles and analyzing experimental data.</p>
+                    <p>This includes producing a oscillating pendulum with a lock attached to a wooden block and a string.</p>
+                    <p>Tracking softwares such as Logger Pro was then used to collect data points and plot position and velocity graphs.</p>
+                    <p>This served as an introduction to damped oscillatory motion, physical laboratory and data/uncertainty analysis.</p>
+                    <h3>Technical Hurdles</h3>
+                    <p>The project brings together the methods and technical skills identified above. Specific design decisions, challenges, implementation details, and analysis can be documented here as the project materials are added.</p>
+                    <h3>The Result</h3>
+                    <ul>
+                        <li>Primary focus: Laboratory Skills, Physics (Oscillations), Data/Uncertainty Analysis.</li>
+                        <li>Project-specific methods, findings, and outcomes to be documented here.</li>
+                        <li>Supporting documentation is available through the project report button below.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('projects')">Back to Projects &rarr;</button>
+            </div>
+        </section>
+
+        <!-- PROJECT DETAIL VIEW 8 -->
+        <section id="project-detail-8" class="section">
+            <h2 style="text-align: left;">(Hopes and Prayers) Matboard Bridge</h2>
+            <div class="project-detail-layout">
+                <div class="gallery-container">
+                    <img id="main-img-8" class="main-image" src="images/P8_team.jpg" alt="Matboard Bridge Main Image">
+                    <p id="caption-project-img-8" class="image-caption">Our team holding the bridge on testing day</p>
+                    <div class="thumbnail-row">
+                        <img src="images/P8_team.jpg" data-caption="Our team holding the bridge on testing day" class="active-thumb" onclick="changeGalleryImage('main-img-8', 'caption-project-img-8', this)">
+                        <img src="images/P8_1p1.png" data-caption="One-pager 1" onclick="changeGalleryImage('main-img-8', 'caption-project-img-8', this)">
+                        <img src="images/P8_1p2.png" data-caption="One-pager 2" onclick="changeGalleryImage('main-img-8', 'caption-project-img-8', this)">
+                        <img src="images/P8_bmd.png" data-caption="Bending Moment Diagram" onclick="changeGalleryImage('main-img-8', 'caption-project-img-8', this)">
+                        <img src="images/P8_sfd.png" data-caption="Shear Force Diagram" onclick="changeGalleryImage('main-img-8', 'caption-project-img-8', this)">
+                        <img src="images/P8_diaphragms.png" data-caption="Diaphragms of the Bridge" onclick="changeGalleryImage('main-img-8', 'caption-project-img-8', this)">
+                        <img src="images/P8_front.png" data-caption="Front View of the Bridge" onclick="changeGalleryImage('main-img-8', 'caption-project-img-8', this)">
+                        <img src="images/P8_side.png" data-caption="Side View of the Bridge" onclick="changeGalleryImage('main-img-8', 'caption-project-img-8', this)">
+                        <img src="images/P8_top.png" data-caption="Top View of the Bridge"  onclick="changeGalleryImage('main-img-8', 'caption-project-img-8', this)">
+                        <img src="images/P8_construct.jpg" data-caption="Construction of the Bridge" onclick="changeGalleryImage('main-img-8', 'caption-project-img-8', this)">
+                        <img src="images/P8_data.png" data-caption="Simulated safety data of the bridge" onclick="changeGalleryImage('main-img-8', 'caption-project-img-8', this)">
+                    </div>
+                    <div class="project-downloads">
+                        <a href="files/CIV102_Project_Team403_Design_Calculations.pdf" download class="project-download-btn">Design Calculations</a>
+                        <a href="files/CIV102_Project_Team403_Design_Report.pdf" download class="project-download-btn">Design Report</a>
+                        <a href="files/CIV102_Project_Team403_Engineering_Assembly.pdf" download class="project-download-btn">Engineering Assembly</a>
+                        <a href="files/Hopes_and_Prayers_Onepager.pdf" download class="project-download-btn">One-pager</a>
+                        <a href="files/CodeFinal403.mlx" download class="project-download-btn">MATLAB Code</a>
+                    </div>
+                </div>
+                <div class="description-container">
+                    <h3>Project Partners</h3>
+                    <p>This project was a course work for CIV102, in which I collaborated with Paul Choi, Dylan Setyono and Atharv Kudchadkar.</p>
+                    <h3>Project Overview</h3>
+                    <p>This project involved using MATLAB and physical calculations to iterate and design a bridge that can support the most load.</p>
+                    <p>Our team repeated checked for safety parameters such as tension/compression/buckling/shear etc.</p>
+                    <p>After the design phase, we physically built the bridge out of matboard + concrete glue.</p>
+                    <p>We then tested the bridge by adding weights until it collapsed, and recorded the maximum load it could support, in our case it was 430N!</p>
+                    <p>This project served as a stepping stone into practical civil engineering work. It also helped bridge the gap between civil engineering knowledge and application.</p>
+                    <p>Side note, this was called Hopes and Prayers as we needed hopes and prayers for it to not fail!</p>
+                    <h3>Skills Applied</h3>
+                    <ul>
+                        <li>MATLAB: The code for structural analysis, bending moment diagrams, and shear force diagrams.</li>
+                        <li>Hands on building: Planning, Constructing the bridge model, especially reinforcing the connections with glue.</li>
+                        <li>Documentation, Calculations: Writing up the project report and performing necessary calculations.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('projects')">Back to Projects &rarr;</button>
+            </div>
+        </section>
+
+        <!-- PROJECT DETAIL VIEW 9 -->
+        <section id="project-detail-9" class="section">
+            <h2 style="text-align: left;">To Be Added</h2>
+            <div class="project-detail-layout">
+                <div class="gallery-container">
+                    <p class="image-caption">Gallery To Be Added</p>
+                    <div class="thumbnail-row"></div>
+                    <div class="project-downloads">
+                        <!-- Add one or more project report buttons here when available. -->
+                    </div>
+                </div>
+                <div class="description-container">
+                    <h3>Project Overview</h3>
+                    <p>To be added.</p>
+                    <h3>Technical Hurdles</h3>
+                    <p>To be added.</p>
+                    <h3>The Result</h3>
+                    <ul>
+                        <li>To be added.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px;">
+                <button class="back-btn" onclick="navigateTo('projects')">Back to Projects &rarr;</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Rooney Cheung. Built with pure HTML, CSS & Vanilla JS.</p>
+        
+        <div class="footer-socials">
+            <a href="https://www.instagram.com/sailorroon/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.linkedin.com/in/rooneycheung/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://github.com/sailorroon" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="mailto:rooney.cheung@mail.utoronto.ca">Email</a>
+        </div>
+
+        <img src="gifs/kirby_walk.gif" alt="Kirby Walking" class="kirby-gif">
+    </footer>
+
+    <!-- JAVASCRIPT FOR FUNCTIONALITY -->
+    <script>
+        function navigateTo(targetId) {
+            const currentSection = document.querySelector('.section.fade-in');
+            const targetSection = document.getElementById(targetId);
+            
+            if (currentSection && currentSection.id === targetId) return;
+            document.querySelectorAll('nav a').forEach(link => link.classList.remove('active-link'));
+            
+            if(targetId !== 'about') {
+                let navId = '';
+                if(targetId.includes('project-detail')) navId = 'nav-projects';
+                else if(targetId.includes('course-detail')) navId = 'nav-courses';
+                else navId = 'nav-' + targetId;
+                
+                const activeNav = document.getElementById(navId);
+                if (activeNav) activeNav.classList.add('active-link');
+            }
+
+            if (currentSection) {
+                currentSection.classList.remove('fade-in');
+                setTimeout(() => {
+                    currentSection.classList.remove('active');
+                    showSection(targetSection);
+                }, 400); 
+            } else {
+                showSection(targetSection);
+            }
+        }
+
+        function showSection(targetSection) {
+            if (targetSection) {
+                targetSection.classList.add('active');
+                setTimeout(() => {
+                    targetSection.classList.add('fade-in');
+                    window.scrollTo(0, 0); 
+                }, 50);
+            }
+        }
+
+        function changeCourseGalleryImage(mainImgId, captionId, downloadBtnId, thumbnailElem) {
+            const mainImg = document.getElementById(mainImgId);
+            const captionEl = document.getElementById(captionId);
+            const downloadBtn = document.getElementById(downloadBtnId);
+            
+            mainImg.style.opacity = 0.5;
+            setTimeout(() => {
+                mainImg.src = thumbnailElem.src;
+                
+                const downloadLink = thumbnailElem.getAttribute('data-download');
+                if(downloadLink) {
+                    downloadBtn.href = downloadLink;
+                }
+                
+                const captionText = thumbnailElem.getAttribute('data-caption');
+                if(captionText && captionEl) {
+                    captionEl.innerText = captionText;
+                }
+                
+                mainImg.style.opacity = 1;
+            }, 150);
+
+            const siblings = thumbnailElem.parentElement.children;
+            for(let img of siblings) {
+                img.classList.remove('active-thumb');
+            }
+            thumbnailElem.classList.add('active-thumb');
+        }
+
+        function changeGalleryImage(mainImgId, captionId, thumbnailElem) {
+            const mainImg = document.getElementById(mainImgId);
+            const captionEl = document.getElementById(captionId);
+            
+            mainImg.style.opacity = 0.5;
+            setTimeout(() => {
+                mainImg.src = thumbnailElem.src;
+                
+                const captionText = thumbnailElem.getAttribute('data-caption');
+                if(captionText && captionEl) {
+                    captionEl.innerText = captionText;
+                }
+
+                mainImg.style.opacity = 1;
+            }, 150);
+
+            const siblings = thumbnailElem.parentElement.children;
+            for(let img of siblings) {
+                img.classList.remove('active-thumb');
+            }
+            thumbnailElem.classList.add('active-thumb');
+        }
+
+        // Automatically wrap all gallery images in a scrollable container
+        document.querySelectorAll('.main-image').forEach(img => {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'main-image-wrapper';
+            img.parentNode.insertBefore(wrapper, img);
+            wrapper.appendChild(img);
+        });
+    </script>
+</body>
+</html>

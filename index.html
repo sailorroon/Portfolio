@@ -591,6 +591,33 @@
             line-height: 1.6;
         }
 
+        /* Course & Project Gallery Constraints */
+        .gallery-container {
+            flex: 0 0 500px !important; /* Locks the entire gallery column to a fixed 500px width */
+            max-width: 100%; 
+            min-width: 0; /* CRITICAL: Stops the scrolling thumbnail row from stretching the page */
+        }
+        
+        .thumbnail-row {
+            width: 100%;
+            overflow-x: auto; /* Maintains the horizontal scroll */
+        }
+        
+        .thumbnail-row img {
+            flex-shrink: 0; /* Ensures thumbnails do not squish, forcing the scrollbar to activate */
+        }
+        
+        /* Experience Page Constraints */
+        .exp-body {
+            max-width: 100%;
+            min-width: 0;
+        }
+        
+        .exp-body img {
+            flex: 0 0 450px !important; /* Strictly locks the image to 450px wide so it doesn't push text */
+            max-width: 100%;
+        }
+
 
         @media (max-width: 768px) {
             /* Main Page: Portrait on top, text at bottom */

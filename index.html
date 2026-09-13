@@ -591,6 +591,63 @@
             line-height: 1.6;
         }
 
+
+        @media (max-width: 768px) {
+            /* Main Page: Portrait on top, text at bottom */
+            .about-layout {
+                flex-direction: column;
+            }
+            .about-text-container h1 {
+                font-size: 2.5rem; /* Slightly smaller for mobile */
+            }
+        
+            /* Experience Page: Image on top, text on bottom */
+            .exp-body {
+                flex-direction: column;
+            }
+            .exp-body img {
+                width: 100%;
+                height: auto;
+            }
+            .exp-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .exp-meta {
+                align-items: flex-start;
+            }
+        
+            /* Courses and Notes: Vertical list */
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+        
+            /* Past Projects: Vertical list */
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        
+            /* Course and Project Detail Views: Gallery on top, text below */
+            .course-detail-layout, 
+            .project-detail-layout {
+                flex-direction: column;
+            }
+            
+            /* Navigation Adjustments for Mobile */
+            header {
+                flex-direction: column;
+                padding: 15px;
+                gap: 15px;
+            }
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            main {
+                margin-top: 130px; /* Accounts for taller wrapped header */
+            }
+        }
+
     </style>
 </head>
 <body>

@@ -591,31 +591,32 @@
             line-height: 1.6;
         }
 
-        /* Course & Project Gallery Constraints */
+        /* Course & Project Gallery Constraints (Fixed Width) */
         .gallery-container {
-            flex: 0 0 500px !important; /* Locks the entire gallery column to a fixed 500px width */
+            flex: 0 0 500px !important; 
             max-width: 100%; 
-            min-width: 0; /* CRITICAL: Stops the scrolling thumbnail row from stretching the page */
+            min-width: 0; /* Stops the scrolling thumbnail row from displacing the page */
         }
         
         .thumbnail-row {
             width: 100%;
-            overflow-x: auto; /* Maintains the horizontal scroll */
+            overflow-x: auto; 
         }
         
         .thumbnail-row img {
-            flex-shrink: 0; /* Ensures thumbnails do not squish, forcing the scrollbar to activate */
+            flex-shrink: 0; /* Ensures thumbnails trigger the scrollbar instead of squishing */
         }
         
-        /* Experience Page Constraints */
+        /* Experience Page Images (Fluid Resizing) */
         .exp-body {
             max-width: 100%;
             min-width: 0;
         }
         
         .exp-body img {
-            flex: 0 0 450px !important; /* Strictly locks the image to 450px wide so it doesn't push text */
-            max-width: 100%;
+            width: 100% !important; 
+            max-width: 450px !important; /* Caps the image at your original desktop width */
+            flex-shrink: 1 !important; /* Overrides your original flex-shrink: 0 so it can compress horizontally */
         }
 
 
@@ -707,7 +708,7 @@
                     
                     <p>I am currently studying in the University of Toronto in Third Year, pursuing a degree in Engineering Science, majoring in Aerospace Engineering.</p>
                     
-                    <p>To me, engineering is more than just solving problems; it's about building something that matters and creating solutions that have a lasting impact on society. I grew up in Hong Kong and moved to Canada in 2023, being exposed to a diverse range of cultural and academic environments,
+                    <p>To me, engineering is more than just solving problems; it's about building something that matters and creating solutions that have a lasting impact on society. I grew up in Hong Kong and moved to Canada in 2022, being exposed to a diverse range of cultural and academic environments,
                          this shaped my interest in the broad field of engineering. In particular, I was always fascinated by space exploration and flying objects in general, hence I pursued a degree in Aerospace Engineering. That said, I am always eager to learn and grow as an engineer, regardless of the field and challenges ahead.</p>
                     
                     <p>Off work and studies, you can find me doing all kinds of activities. In particular, I am an active person, I enjoy working out, running, basketball, hiking... and so on. I also enjoy travelling and exploring new places. In addition, I really enjoy good restaurants and trying new cuisines.
